@@ -33,10 +33,10 @@ Vue.component('gamesoptions', {
 	}),
 	created() {
 
-		axios.get('https://www.giantbomb.com/api/games/?api_key=d8eef8de9cfaf3a7abededf46fe26204a9413a77&format=json')
+		axios.get('http://localhost:8080/')
 		.then(response => {
 
-			this.games = response.data.results
+			this.games = response.data
 			console.log('DONE')
 		})
 		.catch(e => {
