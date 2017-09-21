@@ -2,6 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 var http = require('http');
 var request = require('request');
 
+var stringToReturn = '';
 
 var server = http.createServer(function(req, res) {
 
@@ -15,11 +16,18 @@ var server = http.createServer(function(req, res) {
 
 			if(error) throw error;
 
-			console.log(results);
+			stringToReturn += '[';
 
-			//res.contentType('json');
-			//res.send({data: results});
-			//res.end();
+			results.forEach(function(elt) {
+
+				stringToReturn += JSON.stringify(elt) + ',';
+			});
+
+			stringToReturn = stringToReturn.substring(0, stringToReturn.length - 1);
+
+			stringToReturn += ']';
+
+			res.end(stringToReturn);
 		});
 	});
 });

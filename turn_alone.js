@@ -7,7 +7,7 @@ var file = require('file-system');
 var fs = require('fs');
 var jsonfile = require('jsonfile');
 
-var mongoArray = [];
+var jsonArray = [];
 var idsArray = [];
 
 
@@ -26,23 +26,15 @@ store.getProducts('game', true)
 				 	if(!idsArray.includes(product.steam_appid)) {
 
 				 		idsArray.push(product.steam_appid);
-				 		mongoArray.push({appid: product.steam_appid, name: product.name});
-
-				 		jsonfile.writeFile('allgames.json', {appid: product.steam_appid, name: product.name}, {flag: 'a'} , function(err) {});
+				 		jsonArray.push({appid: product.steam_appid, name: product.name});
 				 	}
 				 	else {
 
 				 		console.log('DUPLICATA');
 				 	}
 				 })
-				 .on('end', function() {
+				 .on('end', function(){ setTimeout(function() {
 
+				 	jsonfile.writeFile('allgames.json', jsonArray, {flag: 'a'} , function(err) {});
 				 	console.log('END');
-
-					db.collection('gameslist').insert(mongoArray, null, function(error, results) {
-
-						if(error) throw error;
-
-						console.log('Doc insertion okay');
-					});
-				 });
+				 }, 10000)});

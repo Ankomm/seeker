@@ -36,7 +36,18 @@ Vue.component('gamesoptions', {
 		axios.get('http://localhost:8080/')
 		.then(response => {
 
-			this.games = response.data
+			console.log(response.data)
+
+			try {
+
+				this.games = JSON.parse(response.data)
+
+			}catch(e) {
+
+				console.log(e);
+			}
+			// console.log(JSON.parse(response.data))
+			
 			console.log('DONE')
 		})
 		.catch(e => {
@@ -49,7 +60,20 @@ Vue.component('gamesoptions', {
 
 var index = new Vue({
 
-	el: "#index"
+	el: "#index",
+	data: {
+
+		connPseudo: '',
+		connPassword: ''
+	},
+	methods: {
+
+		getConnexionData() {
+
+			this.connPseudo = this.$refs.connexion_pseudo
+			this.connPassword = this.$refs.connexion_password
+		}
+	}
 })
 
 //gb api key : d8eef8de9cfaf3a7abededf46fe26204a9413a77
