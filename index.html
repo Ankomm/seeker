@@ -16,13 +16,7 @@
     	<div id="index">
  			<emails></emails>
  			<gamesoptions></gamesoptions>
-            <form>
-                <input type="text" ref="connexion_pseudo" />
-                <input type="text" ref="connexion_password" />
-                <button @click.prevent="getConnexionData()">CONNEXION</button>
-            </form>
-            <p>{{ connPseudo }}</p>
-            <p>{{ connPassword }}</p>
+            <loginform></loginform>
     	</div>
     	<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
     	<script src="logic.js"></script>

@@ -57,6 +57,25 @@ Vue.component('gamesoptions', {
 	}
 })
 
+Vue.component('loginform', {
+
+
+	template: '<form><input type="text" ref="connexion_pseudo" /><input type="text" ref="connexion_password" /><button v-on:click="getConnexionData()">CONNEXION</button></form><p>{{ connPseudo }}</p><p>{{ connPassword }}</p>',
+	data: () => ({
+
+		connPseudo: '',
+		connPassword: ''
+	}),
+	methods: {
+
+		getConnexionData() {
+
+			this.connPseudo = this.$refs.connexion_pseudo
+			this.connPassword = this.$refs.connexion_password
+		}
+	}
+})
+
 
 var index = new Vue({
 
